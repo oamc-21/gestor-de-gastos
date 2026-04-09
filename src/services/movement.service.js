@@ -38,4 +38,17 @@ const deleteMovement = async (movementId, userId) =>{
     return {message: "Movimiento eliminado con éxito!"};
 }
 
-module.exports = {createMovement, getMovementByUser, deleteMovement};
+const getMovementBalance = async (userId) =>{
+    if(!userId) throw new Error("Datos requeridos");
+    const movements = await Movement.find({user: userId});
+    const totalIngresos = movements.filter(m => m.type === "ingreso").reduce((ac, actual) => { return ac + actual.amount}, 0);
+    const totalEgresos = movements.filter(m => m.type === "egreso").reduce((ac, actual) => { return ac + actual.amount}, 0);
+
+    return{
+        totalIngresos,
+        totalEgresos,
+        Balance: totalIngresos - totalEgresos
+    };
+};
+
+module.exports = {createMovement, getMovementByUser, deleteMovement, getMovementBalance};
