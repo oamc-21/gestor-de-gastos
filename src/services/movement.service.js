@@ -22,4 +22,9 @@ const createMovement = async (userId, type, amount, category, description) =>{
     });
     return {id: movement._id, type: movement.type, amount: movement.amount, category: movement.category, description: movement.description, date: movement.date}
 }
+
+
+const getMovementByUser = async (userId) => {
+    
+}
 module.exports = {createMovement};
