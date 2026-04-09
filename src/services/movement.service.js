@@ -1,6 +1,6 @@
 const Movement = require("../models/Movement");
 
-const createMovement = async (userId, type, amount, category, description, date) =>{
+const createMovement = async (userId, type, amount, category, description) =>{
 
     if(!userId || !type || !amount || !category) throw new Error("Campos obligatorios!");
     if(!["ingreso", "egreso"].includes(type)) throw new Error("Tipo invalido");

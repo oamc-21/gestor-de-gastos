@@ -16,6 +16,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/users", require("./routes/user.routes"));
+app.use("/api/movements", require("./routes/movement.routes"));
 
 
 const start = async () => {
