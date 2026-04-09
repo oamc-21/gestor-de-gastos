@@ -25,6 +25,17 @@ const createMovement = async (userId, type, amount, category, description) =>{
 
 
 const getMovementByUser = async (userId) => {
+    if(!userId) throw new Error("Datos requeridos");
+    const movements = await Movement.find({user: userId});
+    return movements;
     
 }
-module.exports = {createMovement};
+
+const deleteMovement = async (movementId, userId) =>{
+    if(!movementId || !userId) throw new Error("Datos requeridos");
+    const result = await Movement.findOneAndDelete({_id: movementId, user: userId});
+    if(!result) throw new Error("Movimiento no encontrado / no autorizado");
+    return {message: "Movimiento eliminado con éxito!"};
+}
+
+module.exports = {createMovement, getMovementByUser, deleteMovement};
