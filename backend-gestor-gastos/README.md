@@ -5,15 +5,19 @@
 ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)
 ![JWT](https://img.shields.io/badge/JWT-000000?style=for-the-badge&logo=jsonwebtokens&logoColor=white)
 
-Este es el motor de mi aplicación de finanzas personales. Diseñado bajo el principio de **"aprender haciendo"**, este backend gestiona la seguridad, los usuarios y toda la lógica financiera que alimenta mi interfaz en React.
-
 ---
 
 ## Filosofía del Proyecto
-Este no es solo un código copiado de un tutorial. Se construyó siguiendo una metodología de **entendimiento profundo**:
-* **Sin cajas negras:** Cada línea de código tiene un porqué, desde la validación manual de datos hasta la estructura de carpetas.
-* **Seguridad primero:** Implementación de hashing de contraseñas y protección de rutas mediante tokens.
-* **Escalabilidad:** Separación clara entre la lógica de servidor (Controllers) y la lógica de negocio (Services).
+Este backend es un sistema de gestión financiera de alto rendimiento diseñado bajo una arquitectura de capas desacopladas (Controllers - Services - Models). El motor garantiza una integridad de datos absoluta y una respuesta de baja latencia para operaciones críticas de balance y auditoría de movimientos.
+
+Capacidades Core:
+* **Security Engine**: Implementación de seguridad multicapa mediante JWT (JSON Web Tokens) para persistencia de sesión y Bcrypt para el blindaje de credenciales sensibles.
+
+* **Business Logic Layer:** Procesamiento avanzado en el servidor para el cálculo dinámico de balances, evitando la sobrecarga en el cliente y garantizando la precisión matemática en tiempo real.
+
+* **Data Integrity:** Validaciones estrictas a nivel de esquema con Mongoose, asegurando que cada entrada de capital o egreso cumpla con los estándares financieros definidos.
+
+* **API RESTful:** Estructura de endpoints estandarizada, optimizada para una integración transparente con interfaces modernas (React/Vite).
 
 ## Stack Tecnológico
 * **Runtime:** Node.js
@@ -32,7 +36,7 @@ Este no es solo un código copiado de un tutorial. Se construyó siguiendo una m
 | `POST` | `/api/users/register` | Crea un nuevo usuario y encripta su contraseña. 
 | `POST` | `/api/users/login` | Valida credenciales y devuelve un Token (JWT). 
 
-### 💸 Gestión de Movimientos
+### Gestión de Movimientos
 | Método | Endpoint | Descripción | Protegida |
 | :--- | :--- | :--- | :---: |
 | `GET` | `/api/movements` | Obtiene la lista completa de ingresos y egresos del usuario. 
@@ -44,13 +48,12 @@ Este no es solo un código copiado de un tutorial. Se construyó siguiendo una m
 ## Estructura de Carpetas
 ```text
 backend/
-├── config/         # Configuración de DB (MongoDB Atlas)
 ├── controllers/    # Recepción de peticiones y envío de respuestas
 ├── middleware/     # Filtros de seguridad (Verificación de Token)
 ├── models/         # Definición de Esquemas (User, Movement)
 ├── routes/         # Definición de Endpoints
 ├── services/       # Lógica de Negocio (Cálculos y procesos core)
-└── app.js          # Inicialización del servidor y Middlewares globales
+└── server.js       # Inicialización del servidor y Middlewares globales
 
 
 ## Instalacion y uso
